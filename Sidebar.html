@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html style = 'overflow-y:hidden'>
+  <head>
+      <base target="_top">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+      <style>
+
+          .footer {
+              position: absolute;
+              bottom: 0;
+              width: 100%;
+              padding: 1rem; 
+          }
+
+          #input_id {
+              padding: 0px 15px;
+              margin-top: 400px;
+          }
+
+          .container {
+              display: flex;
+              justify-content: center; 
+              align-items: center;     
+              height: 50px;         
+          }
+
+
+      </style>
+  </head>
+  <body>
+
+
+    <div id="input_id" class="field">
+      <div class="control">
+        <input class="input" placeholder="Enter your app id" type="text" id="appId" name="appId">
+      </div>
+    </div>
+
+      <div class="container">
+        <button class="button is-success is-light" id="runButton">Fetch Reviews</button>
+      </div>
+      <div class="container">
+        <button class="button is-info is-light" id="analyzeSentimentButton">Analyze Sentiment</button>
+      </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+           by <strong>Mohamed Elsiesy</strong>
+        </p>
+      </div>
+    </footer>
+    
+
+    <script>
+      document.getElementById('runButton').addEventListener('click', function() {
+        var appId = document.getElementById('appId').value;
+        google.script.run.withSuccessHandler(function(){
+        }).main(appId);
+      });
+
+      document.getElementById('analyzeSentimentButton').addEventListener('click', function() {
+        google.script.run.withSuccessHandler(function(){
+        }).analyzeSentimentForSheet();
+      });
+    </script>
+  </body>
+</html>
